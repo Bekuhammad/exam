@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Socket.io Client</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io("http://localhost:3000");
+
+    function sendMessage() {
+      const messageData = {
+        senderId: "userId1",
+        receiverId: "userId2", 
+        content: "Hello, how are you?",
+        token: "userToken", 
+      };
+      
+      socket.emit("create:message", messageData);
+    }
+
+    function getMessages() {
+      const messageRequest = {
+        userId: "userId1", 
+        token: "userToken",
+      };
+      
+      socket.emit("get:message", messageRequest);
+    }
+
+    function deleteMessage(messageId) {
+      const deleteRequest = {
+        messageId,
+        token: "y", 
+      };
+      
+      socket.emit("delete:message", deleteRequest);
+    }
+
+    function updateMessage(messageId, newContent) {
+      const updateRequest = {
+        messageId,
+        newContent,
+        token: "ixtiyoriy", 
+      };
+      
+      socket.emit("update:message", updateRequest);
+    }
+
+    socket.on("message:created", (data) => {
+      console.log("Message Created:", data);
+    });
+
+    socket.on("message:fetched", (data) => {
+      console.log("Messages Fetched:", data);
+    });
+
+    socket.on("message:deleted", (data) => {
+      console.log("Message Deleted:", data);
+    });
+
+    socket.on("message:updated", (data) => {
+      console.log("Message Updated:", data);
+    });
+  </script>
+</head>
+<body>
+  <h1>Socket.io Client</h1>
+  <button onclick="sendMessage()">Send Message</button>
+  <button onclick="getMessages()">Get Messages</button>
+  <button onclick="deleteMessage('messageId')">Delete Message</button>
+  <button onclick="updateMessage('messageId', 'New content')">Update Message</button>
+</body>
+</html>
