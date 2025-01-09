@@ -6,7 +6,7 @@ const { guardMiddleware } = require("../../middlewares/guard.middleware");
 const router = Router();
 
 // CREATE: Yangi vazifa yaratish
-// Faqatgina "admin", "manager" yoki "leader" rollariga ega foydalanuvchilar yangi vazifa yaratishi mumkin
+
 router.post(
   "/",
   authMiddleware.verifyToken.bind(authMiddleware),
@@ -15,7 +15,6 @@ router.post(
 );
 
 // GET ALL: Barcha vazifalarni olish
-// Barcha roli bo'lgan autentifikatsiyadan o'tgan foydalanuvchilar vazifalarni ko'ra oladi
 router.get(
   "/",
   authMiddleware.verifyToken.bind(authMiddleware),
