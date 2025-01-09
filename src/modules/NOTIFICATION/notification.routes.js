@@ -8,25 +8,25 @@ const router = Router();
 // CREATE: Notification yaratish
 router.post(
   "/",
-  authMiddleware.verifyToken.bind(authMiddleware),  // Tokenni tekshirish
-  guardMiddleware.verifyRole("admin", "leader", "manager").bind(guardMiddleware),  // Rolni tekshirish
-  notificationController.create.bind(notificationController)  // Controller metodini chaqirish
+  authMiddleware.verifyToken.bind(authMiddleware),  
+  guardMiddleware.verifyRole("admin", "leader", "manager").bind(guardMiddleware), 
+  notificationController.create.bind(notificationController)  
 );
 
 // GET ALL: Barcha notificationsni olish
 router.get(
   "/",
-  authMiddleware.verifyToken.bind(authMiddleware),  // Tokenni tekshirish
-  guardMiddleware.verifyRole("admin", "leader", "manager").bind(guardMiddleware),  // Rolni tekshirish
-  notificationController.getAll.bind(notificationController)  // Controller metodini chaqirish
+  authMiddleware.verifyToken.bind(authMiddleware),  
+  guardMiddleware.verifyRole("admin", "leader", "manager").bind(guardMiddleware),  
+  notificationController.getAll.bind(notificationController)  
 );
 
 // DELETE: Notificationni o'chirish
 router.delete(
   "/:id",
-  authMiddleware.verifyToken.bind(authMiddleware),  // Tokenni tekshirish
-  guardMiddleware.verifyRole("admin", "leader", "manager").bind(guardMiddleware),  // Rolni tekshirish
-  notificationController.delete.bind(notificationController)  // Controller metodini chaqirish
+  authMiddleware.verifyToken.bind(authMiddleware), 
+  guardMiddleware.verifyRole("admin", "leader", "manager").bind(guardMiddleware),  
+  notificationController.delete.bind(notificationController)  
 );
 
 module.exports = { router };
